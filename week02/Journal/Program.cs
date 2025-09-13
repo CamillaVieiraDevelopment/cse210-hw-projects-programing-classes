@@ -10,15 +10,17 @@ class Program
         PromptGenerator promptGenerator = new PromptGenerator();
         bool running = true;
 
+        //Menu
         while (running)
         {
             Console.WriteLine("Welcome to the Journal Program!");
             Console.WriteLine("Please select one of the following choices:");
-            Console.WriteLine("1. Write");
+            Console.WriteLine("1. Write (with prompt)");
             Console.WriteLine("2. Display");
-            Console.WriteLine("3. Load");
-            Console.WriteLine("4. Save");
+            Console.WriteLine("3. Load (from Downloads)");
+            Console.WriteLine("4. Save (to Downloads)");
             Console.WriteLine("5. Quit");
+            Console.WriteLine("6. Free Write (no prompt)");
             Console.Write("What would you like to do? ");
 
             string choice = Console.ReadLine();
@@ -35,13 +37,13 @@ class Program
                     break;
 
                 case "3":
-                    Console.Write("Enter file name to load: ");
+                    Console.Write("Enter the file name to load (e.g., journal.txt): ");
                     string loadFile = Console.ReadLine();
                     journal.LoadFromFile(loadFile);
                     break;
 
                 case "4":
-                    Console.Write("Enter file name to save: ");
+                    Console.Write("Enter the file name to save (e.g., journal.txt): ");
                     string saveFile = Console.ReadLine();
                     journal.SaveToFile(saveFile);
                     break;
@@ -49,6 +51,11 @@ class Program
                 case "5":
                     running = false;
                     Console.WriteLine("Goodbye!");
+                    break;
+
+                case "6":
+                    Entry freeEntry = PromptFreeEntry();
+                    journal.AddEntry(freeEntry);
                     break;
 
                 default:
@@ -67,6 +74,18 @@ class Program
 
         Console.WriteLine(prompt);
         entry.PromptText = prompt;
+        entry.EntryText = Console.ReadLine();
+        entry.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+        return entry;
+    }
+
+    static Entry PromptFreeEntry()
+    {
+        Entry entry = new Entry();
+
+        Console.WriteLine("Write whatever you want:");
+        entry.PromptText = "Free Write";
         entry.EntryText = Console.ReadLine();
         entry.Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 

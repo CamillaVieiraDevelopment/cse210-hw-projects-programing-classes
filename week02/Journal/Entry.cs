@@ -1,4 +1,5 @@
 using System;
+// Represents a journal entry and provides a method to display it in the console.
 
 public class Entry
 {

@@ -12,10 +12,24 @@ public class PromptGenerator
         "What did I learn today?"
     };
 
+    private List<string> _usedPrompts = new List<string>();
+    private Random _random = new Random();
+
     public string GetRandomPrompt()
     {
-        Random random = new Random();
-        int index = random.Next(_prompts.Count);
-        return _prompts[index];
+        if (_prompts.Count == 0)
+        {
+            _prompts.AddRange(_usedPrompts);
+            _usedPrompts.Clear();
+            Console.WriteLine("🔄 All prompts were used. Restarting the list...");
+        }
+
+        int index = _random.Next(_prompts.Count);
+        string chosenPrompt = _prompts[index];
+        // Selects a random prompt, marks it as used, removes it from the available prompts, and returns it
+        _usedPrompts.Add(chosenPrompt);
+        _prompts.RemoveAt(index);
+
+        return chosenPrompt;
     }
 }
