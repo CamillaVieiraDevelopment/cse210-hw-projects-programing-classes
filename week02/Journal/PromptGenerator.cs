@@ -22,11 +22,12 @@ public class PromptGenerator
             _prompts.AddRange(_usedPrompts);
             _usedPrompts.Clear();
             Console.WriteLine("🔄 All prompts were used. Restarting the list...");
+            // Improvement implemented! Notify the user when all prompts have been used and the list is restarting
         }
 
         int index = _random.Next(_prompts.Count);
         string chosenPrompt = _prompts[index];
-        // Selects a random prompt, marks it as used, removes it from the available prompts, and returns it
+        // // Improvement implemented! Selects a random prompt, marks it as used, removes it from the available prompts, and returns it
         _usedPrompts.Add(chosenPrompt);
         _prompts.RemoveAt(index);
 

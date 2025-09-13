@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+//The Journal
+
 public class Journal
 {
     private List<Entry> _entries = new List<Entry>();
@@ -78,6 +80,6 @@ public class Journal
 
         Console.WriteLine($"Journal loaded successfully from: {downloadsPath}");
         Console.WriteLine("\nHere are the loaded entries:\n");
-        DisplayAll(); 
+        DisplayAll();
     }
 }

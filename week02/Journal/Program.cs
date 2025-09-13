@@ -10,7 +10,7 @@ class Program
         PromptGenerator promptGenerator = new PromptGenerator();
         bool running = true;
 
-        //Menu
+        //Menu the program of Journal
         while (running)
         {
             Console.WriteLine("Welcome to the Journal Program!");
@@ -20,7 +20,7 @@ class Program
             Console.WriteLine("3. Load (from Downloads)");
             Console.WriteLine("4. Save (to Downloads)");
             Console.WriteLine("5. Quit");
-            Console.WriteLine("6. Free Write (no prompt)");
+            Console.WriteLine("6. Free Write (no prompt)"); // Improvement implemented!
             Console.Write("What would you like to do? ");
 
             string choice = Console.ReadLine();
@@ -53,7 +53,7 @@ class Program
                     Console.WriteLine("Goodbye!");
                     break;
 
-                case "6":
+                case "6": // Improvement implemented!
                     Entry freeEntry = PromptFreeEntry();
                     journal.AddEntry(freeEntry);
                     break;
