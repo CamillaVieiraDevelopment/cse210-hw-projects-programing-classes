@@ -1,5 +1,8 @@
 using System;
 
+/// Represents a scripture reference (book, chapter, start verse, optional end verse).
+/// This class provides multiple constructors to support single verses and verse ranges,
+/// and it formats the reference for display.
 public class Reference
 {
     public string Book { get; }
@@ -7,7 +10,7 @@ public class Reference
     public int VerseStart { get; }
     public int? VerseEnd { get; }
 
-    // Construtor básico (um único versículo)
+    /// Constructor for a single verse reference.
     public Reference(string book, int chapter, int verse)
     {
         Book = book;
@@ -16,7 +19,7 @@ public class Reference
         VerseEnd = null;
     }
 
-    // Construtor para intervalo de versículos
+    /// Constructor for a reference that spans multiple verses.
     public Reference(string book, int chapter, int verseStart, int verseEnd)
     {
         Book = book;
@@ -25,10 +28,12 @@ public class Reference
         VerseEnd = verseEnd;
     }
 
-    // Construtor que aceita string no formato "Book Chapter:Verse[-Verse]"
+    /// Parses a reference from a string in the form "Book Chapter:Verse[-Verse]".
+    /// Example: "Proverbs 3:5-6" or "John 3:16".
+    /// Note: this parser expects the book and chapter:verse to be separated by a space.
     public Reference(string fullReference)
     {
-        // Ex: "Proverbs 3:5-6"
+        // Example input: "Proverbs 3:5-6"
         var spaceSplit = fullReference.Split(' ');
         Book = spaceSplit[0];
         var chapterVerse = spaceSplit[1].Split(':');
@@ -40,6 +45,7 @@ public class Reference
             VerseEnd = int.Parse(verseParts[1]);
     }
 
+    /// Return a formatted string representation of the reference.
     public override string ToString()
     {
         if (VerseEnd.HasValue)
