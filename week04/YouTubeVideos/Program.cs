@@ -21,7 +21,7 @@ class Program
 
         video3.AddComment(new Comment("Clara", "Very good!!!!!."));
         video3.AddComment(new Comment("Kaline", "Thank you!."));
-        video3.AddComment(new Comment("Bob", "Good!!!."));
+        video3.AddComment(new Comment("Bob", "Good!!!"));
 
         // List of videos
         List<Video> videos = new List<Video> { video1, video2, video3 };
